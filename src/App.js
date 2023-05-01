@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import CardDisplay from './CardDisplay';
+import CardForm from './CardForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      nmail: "",
+      linkedIn: "", 
+      github: ""
+    }
+}
+
+    updateState = (stateKey, newValue) => {
+      this.setState({
+        [stateKey]: newValue
+      });
+}
+
+    render(){
+      return (
+      <div className="App">
+        <CardDisplay card={this.state} updateState={this.updateState}/>
+        <CardForm card={this.state} />
+      </div>
+    );
+ }
 }
 
 export default App;
